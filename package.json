@@ -1,0 +1,50 @@
+{
+  "name": "Bankka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run build-babel",
+    "build-babel": "babel src -d build",
+    "clean": "rm -rf build .nyc_output coverage && mkdir build",
+    "coverage": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
+    "dev-start": "babel-watch ./src/app.js",
+    "start": "npm run build && node ./build/app.js",
+    "test": "nyc mocha --require @babel/register --require @babel/polyfill --timeout 1000 --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meetKazuki/Bankka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meetKazuki/Bankka/issues"
+  },
+  "homepage": "https://github.com/meetKazuki/Bankka#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "babel-watch": "^7.0.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.0.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^13.3.0"
+  }
+}
