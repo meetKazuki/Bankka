@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/meetKazuki/Bankka#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "express": "^4.16.4"
   },
   "devDependencies": {
