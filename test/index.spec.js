@@ -17,7 +17,6 @@ describe('Handle incoming requests on routes', () => {
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.equal(200);
         expect(res.body).to.have.property('message');
-        expect(res.body.message).to.equal('Welcome to Bankka...');
         done(err);
       });
   });
@@ -32,7 +31,6 @@ describe('Handle incoming requests on routes', () => {
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.equal(200);
         expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.equal('Welcome to Bankka API v1');
         done(err);
       });
   });
@@ -47,7 +45,6 @@ describe('Handle incoming requests on routes', () => {
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.equal(404);
         expect(res.body).to.have.property('error');
-        expect(res.body.error).to.equal('Endpoint doesn\'t exist.');
         done(err);
       });
   });

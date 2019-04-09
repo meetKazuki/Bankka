@@ -25,7 +25,9 @@
   "homepage": "https://github.com/meetKazuki/Bankka#readme",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "express": "^4.16.4"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

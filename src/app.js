@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
   res.status(200).json({
@@ -23,7 +23,7 @@ app.get('/api/v1', (req, res) => {
 app.all('*', (req, res) => {
   res.status(404).json({
     status: 404,
-    error: 'Endpoint doesn\'t exist.',
+    error: "Endpoint doesn't exist.",
   });
 });
 
