@@ -1,16 +1,20 @@
 import compression from 'compression';
-import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../docs/bankka-docs.json';
 
-config();
+require('dotenv').config();
 
-const { NODE_ENV } = process.env;
 const app = express();
 
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-if (['development', 'production'].includes(NODE_ENV)) app.use(morgan('dev'));
+app.use(morgan('dev'));
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
+app.get('/', (_, res: express.Response) => res.status(301).redirect('/docs'));
 
 export default app;
