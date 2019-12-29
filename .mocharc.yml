@@ -1,0 +1,8 @@
+extension:
+  - ts
+recursive:
+  - true
+require: ['ts-node/register']
+reporter: spec
+timeout: 10000
+exit: true

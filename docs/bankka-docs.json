@@ -1,0 +1,321 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://virtserver.swaggerhub.com/meetKazuki/Bankka/1.0.0"
+    }
+  ],
+  "info": {
+    "description": "Bankka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawal",
+    "version": "1.0.0",
+    "title": "Bankka API",
+    "contact": {
+      "email": "meetdesmond.edem@gmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "authentication",
+      "description": "Operations associated with user authentication"
+    },
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "create user account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "user created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponseObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "validation errors (bad request)"
+          },
+          "409": {
+            "description": "user already exist"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "login a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInRequestObject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponseObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "validation errors (bad request)"
+          },
+          "401": {
+            "description": "email or password does not match record in the database"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClientRequestBody": {
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password",
+          "type",
+          "isAdmin"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Margarete"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Abshire"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "Duane74@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "_UiRhLIuRHoSG6_"
+          },
+          "type": {
+            "type": "string",
+            "example": [
+              "client",
+              "staff"
+            ]
+          },
+          "isAdmin": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "type": "object"
+      },
+      "AccountRequestBody": {
+        "required": [
+          "accountNumber",
+          "owner (userId)",
+          "type",
+          "balance",
+          "createdOn",
+          "status"
+        ],
+        "properties": {
+          "accountNumber": {
+            "type": "number",
+            "example": 2057921013
+          },
+          "owner": {
+            "type": "string",
+            "format": "uuid",
+            "example": "6464d512-ac2e-41fc-ae09-c39a1db801fa"
+          },
+          "type": {
+            "type": "string",
+            "example": [
+              "savings",
+              "current"
+            ]
+          },
+          "balance": {
+            "type": "number",
+            "example": 0
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time",
+            "example": "Sat Dec 28 2019 13:52:21 GMT+0100"
+          },
+          "status": {
+            "type": "string",
+            "example": [
+              "draft",
+              "active",
+              "dormant"
+            ]
+          }
+        }
+      },
+      "TransactionRequestBody": {
+        "required": [
+          "type",
+          "accountNumber",
+          "amount",
+          "oldBalance",
+          "newBalance",
+          "cashier"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": [
+              "debit",
+              "credit"
+            ]
+          },
+          "accountNumber": {
+            "type": "number",
+            "example": 2057921013
+          },
+          "amount": {
+            "type": "integer",
+            "example": 10000
+          },
+          "oldBalance": {
+            "type": "integer",
+            "example": 25000
+          },
+          "newBalance": {
+            "type": "integer",
+            "example": 35000
+          },
+          "cashier": {
+            "type": "string",
+            "example": "Stephon Gutowski"
+          }
+        }
+      },
+      "SignInRequestObject": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "Duane74@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "_UiRhLIuRHoSG6_"
+          }
+        }
+      },
+      "SignupResponseObject": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NTc1OTk0LTBlNTUtNGJmMy04NzkxLTMxY2IwYjQzMzJkNCIsImVtYWlsIjoiYWRtaW5AdGVhbXdvcmsuZGV2IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNTc1MDE2MDQ4LCJleHAiOjE1NzUxMDI0NDh9.amjTY0HX2G0d36HDneL2nJ-fnC3RIyVXJl1SC8WbCVg"
+              },
+              "user": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "fcf431e2-0ec7-48df-8cb4-bc7056d8f99f"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "example": "Margarete"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "Abshire"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "Duane74@gmail.com"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "client"
+                  },
+                  "isAdmin": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "UserCreated": {
+        "description": "user object created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SignupResponseObject"
+            }
+          }
+        }
+      }
+    }
+  }
+}
