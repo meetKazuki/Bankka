@@ -1,6 +1,5 @@
 {
   "env": {
-    "browser": true,
     "es6": true,
     "mocha": true,
     "node": true
@@ -17,6 +16,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "global-require": 0,
     "import/extensions": [
       "error",
       "ignorePackages",{
@@ -25,7 +25,15 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "import/no-dynamic-require": 0,
+    "lines-between-class-members": 0,
+    "max-classes-per-file": 0,
+    "no-param-reassign": 0,
+    "one-var": 0,
+    "one-var-declaration-per-line": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "@typescript-eslint/no-var-requires": 0
   },
   "settings": {
     "import/resolver": {
