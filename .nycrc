@@ -1,0 +1,8 @@
+{
+  "all": true,
+  "include": ["src"],
+  "instrument": false,
+  "reporter": ["html", "lcov", "text"],
+  "require": ["ts-node/register"],
+  "sourceMap": false
+}

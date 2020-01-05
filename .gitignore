@@ -64,4 +64,6 @@ typings/
 build/
 docs/Banka_-_Challenge_1_and_2.pdf
 docs/TODO.md
+src/dump
+
 package-lock.json
