@@ -17,15 +17,13 @@ describe('Error helper', () => {
 
     it('should set statusCode to defined statusCode', async () => {
       const error = new BaseError(404);
-      DEBUG(error);
 
-      error.should.have.property('status');
+      error.should.have.property('statusCode');
       error.statusCode.should.eql(404);
     });
 
-    it.skip('should set error message', async () => {
+    it('should set error message', async () => {
       const error = new BaseError(404, 'resource not found');
-      DEBUG(error);
 
       error.should.have.property('message');
       error.message.should.eql('resource not found');

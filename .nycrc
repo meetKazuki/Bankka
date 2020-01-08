@@ -1,5 +1,9 @@
 {
   "all": true,
+  "extension": [".js", ".jsx", ".ts", ".tsx"],
+  "exclude": [
+    "**/*.d.ts"
+  ],
   "include": ["src"],
   "instrument": false,
   "reporter": ["html", "lcov", "text"],

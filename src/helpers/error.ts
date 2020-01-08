@@ -8,10 +8,11 @@
  * @param {Array} errors an array of errors
  */
 export class BaseError extends Error {
-  public statusCode!: number;
-  public errors: [];
+  statusCode!: number;
+  message: string;
+  errors: any[];
 
-  constructor(statusCode?: number, message = 'an error occurred', errors?: []) {
+  constructor(statusCode?: number, message = 'an error occurred', errors?: any[]) {
     super(message);
     this.statusCode = statusCode || 500;
     this.message = message;

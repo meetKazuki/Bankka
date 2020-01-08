@@ -33,7 +33,7 @@ export default (err: any, _: any, response: any, next: any): object => {
     error: {
       message: err.message,
       ...(err.errors && { errors: err.errors }),
-      ...(isProduction && { trace: errorMessage }),
+      ...(!isProduction && { trace: errorMessage }),
     },
   });
 };
